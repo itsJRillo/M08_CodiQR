@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    final String value = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,12 +17,16 @@ public class MainActivity extends AppCompatActivity {
 
         Button snap = findViewById(R.id.button);
         TextView token = findViewById(R.id.textView);
+        token.setText("Aquí aparecerá el token");
 
         snap.setOnClickListener(v -> {
             Intent i = new Intent(this,ScanActivity.class);
             startActivity(i);
         });
 
-        token.setText(getIntent().getExtras().getString("token"));
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            token.setText(extras.getString("token"));
+        }
     }
 }
